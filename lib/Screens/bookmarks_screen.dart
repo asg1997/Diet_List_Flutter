@@ -5,6 +5,16 @@ class BookmarksScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+        body: ListView.builder(
+      itemCount: 2,
+      itemBuilder: (BuildContext context, int index) {
+        return cell(context);
+      },
+    ));
+  }
+
+  Container cell(BuildContext context) {
+      return Container();
   }
 }
