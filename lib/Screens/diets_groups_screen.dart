@@ -40,25 +40,20 @@ class DietsGroupsScreen extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16),
                         ),
-                        SizedBox(
-                          height: 2,
+                        SizedBox(height: 3,),
+                        Text(
+                          'диеты',
+                          style: TextStyle(
+                              color: Color.fromRGBO(129, 129, 129, 1),
+                              fontSize: 14),
                         ),
-                        RichText(
-                            text: TextSpan(
-                                text: 'диеты\n',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(129, 129, 129, 1),
-                                  fontSize: 14,
-                                ),
-                                children: [
-                              TextSpan(
-                                text: 'по заболеваниям',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(129, 129, 129, 1),
-                                  fontSize: 14,
-                                )
-                              )
-                            ]))
+                        SizedBox(height: 3,),
+                        Text(
+                          'по заболеваниям',
+                          style: TextStyle(
+                              color: Color.fromRGBO(129, 129, 129, 1),
+                              fontSize: 14),
+                        )
                       ],
                     ),
                   ),
