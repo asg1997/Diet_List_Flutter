@@ -54,8 +54,15 @@ class _MainScreenState extends State<MainScreen> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 27, left: 21),
-                  child: Icon(Icons.list,size: 30,color: Colors.white,),
+                  padding: const EdgeInsets.only(top: 19, left: 5),
+                  child: ElevatedButton( onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                      shadowColor: Colors.transparent
+                    ),
+                    child: Icon(Icons.menu_outlined,size: 30, color: Colors.white,),
+
+                  )
                 ))
           ],
         ),
