@@ -9,9 +9,14 @@ class SearchDietScreen extends StatefulWidget {
 
 class _SearchDietScreenState extends State<SearchDietScreen> {
   @override
-
-  String _mySelection = '';
-  List<String> dietsList = ['Аритмия', 'Гастрит'];
+  String _mySelection = 'Аритмия';
+  List<String> dietsList = [
+    'Аритмия',
+    'Гастрит',
+    'Панкреатит',
+    'Язва',
+    'Псориаз'
+  ];
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +46,10 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
                             borderRadius: BorderRadius.circular(210),
                           ),
                         ),
-                        child: Text('Далее')),
+                        child: Text(
+                          'Далее',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        )),
                   )
                 ],
               )
@@ -67,10 +75,27 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          Expanded(
+              child: DropdownButtonHideUnderline(
+                  child: ButtonTheme(
+            alignedDropdown: true,
+            child: DropdownButton(
+              value: _mySelection,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _mySelection = newValue!;
+                });
+              },
+              items: dietsList.map<DropdownMenuItem<String>>((String newValue) {
+                return DropdownMenuItem<String>(
+                  value: newValue,
+                  child: Text(newValue),
+                );
+              }).toList(),
+            ),
+          )))
         ],
       ),
     );
   }
-
-
 }
