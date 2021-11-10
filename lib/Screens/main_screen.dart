@@ -26,31 +26,27 @@ class _MainScreenState extends State<MainScreen> {
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.only(top: 23),
+                padding: const EdgeInsets.only(top: 20),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                   ElevatedButton(onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.transparent
+                        primary: Colors.transparent,
+                        shadowColor: Colors.transparent
                       ),
                       child: Row(
-                        children: [
-                          Text('Гастрит',style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
-                        ),)
-                        ],
-                      )
-                      /*Text('Гастрит', style: TextStyle(
-                        fontSize: 22,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
-                      ),)),
-                  Icon(Icons.keyboard_arrow_down_rounded,
-                  size: 25,
-                  color: Color.fromRGBO(255, 168, 0, 1),)*/
+                        children:[ Text('Гастрит', style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold
+                        ),
+                        ),
+                          Padding(padding: EdgeInsets.only(left: 5)),
+                          Icon(Icons.keyboard_arrow_down_rounded,
+                            size: 25,
+                            color: Color.fromRGBO(255, 168, 0, 1),)
+                      ])),
                 ]),
               ),
 
@@ -58,8 +54,8 @@ class _MainScreenState extends State<MainScreen> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 25),
-                  child: Icon(Icons.list, size: 30, color: Colors.white),
+                  padding: const EdgeInsets.only(top: 27, left: 21),
+                  child: Icon(Icons.list,size: 30,color: Colors.white,),
                 ))
           ],
         ),
