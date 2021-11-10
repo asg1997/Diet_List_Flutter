@@ -20,30 +20,22 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [Image.asset('assets/pribori.png')],
               ),
-              Column(
-                children: [
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: "Заболевание",
-                        labelText: 'Выбрать заболевание',
-                        labelStyle:
-                        TextStyle(
-                            fontSize: 24,
-                            color: Colors.black),
-                      border: OutlineInputBorder(),
-                      fillColor: Colors.white,
-                      filled: true
-                    ),
-                    keyboardType: TextInputType.emailAddress,
-                    obscureText: false,
-                    maxLines: 3,
-                  )
-                ],
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(onPressed: () {}, child: Text('Далее')),
+                children: [ SizedBox(
+                  height: 61,
+                  width: 174,
+                  child: ElevatedButton(onPressed: () {
+                    Navigator.pushNamed(context, '/MainScreen');
+                  },
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(255, 168, 0, 1),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(210),
+                        ),
+                      ),
+                      child: Text('Далее')),
+                )
                 ],
               )
             ],
