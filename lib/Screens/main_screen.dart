@@ -34,14 +34,23 @@ class _MainScreenState extends State<MainScreen> {
                       style: ElevatedButton.styleFrom(
                         primary: Colors.transparent
                       ),
-                      child: Text('Гастрит', style: TextStyle(
+                      child: Row(
+                        children: [
+                          Text('Гастрит',style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                        ),)
+                        ],
+                      )
+                      /*Text('Гастрит', style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
                         fontWeight: FontWeight.bold
                       ),)),
                   Icon(Icons.keyboard_arrow_down_rounded,
                   size: 25,
-                  color: Color.fromRGBO(255, 168, 0, 1),)
+                  color: Color.fromRGBO(255, 168, 0, 1),)*/
                 ]),
               ),
 
