@@ -67,19 +67,6 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Expanded(
-
-          //     child: DropdownButtonHideUnderline(
-          //   child: ButtonTheme(
-          //     alignedDropdown: true,
-          //     child: DropdownButton(
-          //       value: _mySelection,
-          //       onChanged: (newValue) {
-          //
-          //       },
-          //       items: dietsList.map<DropdownMenuItem>,
-          //   ),
-          // ))
         ],
       ),
     );

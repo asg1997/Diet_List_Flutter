@@ -17,20 +17,31 @@ class _MainScreenState extends State<MainScreen> {
             Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/osnovnoi.png')
-
+                    image: AssetImage('assets/fon.png'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter
                   )
                 ),
             ),
             Align(
               alignment: Alignment.topCenter,
               child: Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 23),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                  Text('Гастрит'),
-                  Icon(Icons.keyboard_arrow_down_rounded)
+                  ElevatedButton(onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.transparent
+                      ),
+                      child: Text('Гастрит', style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                      ),)),
+                  Icon(Icons.keyboard_arrow_down_rounded,
+                  size: 25,
+                  color: Color.fromRGBO(255, 168, 0, 1),)
                 ]),
               ),
 
@@ -38,8 +49,8 @@ class _MainScreenState extends State<MainScreen> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 25),
-                  child: Icon(Icons.list),
+                  padding: const EdgeInsets.only(top: 30, left: 25),
+                  child: Icon(Icons.list, size: 30, color: Colors.white),
                 ))
           ],
         ),
