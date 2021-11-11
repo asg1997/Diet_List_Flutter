@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/Components/button.dart';
 import 'package:flutter/material.dart';
 
 class SearchDietScreen extends StatefulWidget {
@@ -33,30 +34,18 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    height: 61,
-                    width: 174,
-                    child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/MainScreen');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: Color.fromRGBO(255, 168, 0, 1),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(210),
-                          ),
-                        ),
-                        child: Text(
-                          'Далее',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
+                  // Для того. чтобы получить кнопку, нужно просто написать ее класс
+                  // Можно не менять параментры кнопки, тогда они будет без текста
+                  // можно вызвать параметры в скобках и изменить текст или цвет или и то, и другое
+                  Button(
+                    buttonTitle: 'Далее',
                   )
                 ],
               )
             ],
           ),
         ),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/osnovnoi.png'),
                 // растягиваем фото
