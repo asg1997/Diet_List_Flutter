@@ -18,6 +18,7 @@ class _MainScreenState extends State<MainScreen> {
       body: SafeArea(
         child: Stack(
           children: [
+            // Задняя картинка
             Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -71,7 +72,6 @@ class _MainScreenState extends State<MainScreen> {
                         color: Colors.white,
                       ),
                     ))),
-            // Ячейки с описанием диет
             descriptionPanel()
           ],
         ),
@@ -116,10 +116,21 @@ class _MainScreenState extends State<MainScreen> {
       children: [
           Container(
             height: 113,
-            padding: EdgeInsets.only(left: 24, right: 24),
+
+            margin: EdgeInsets.only(top: 81, left: 25, right: 25),
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10)
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                offset: Offset.zero,
+                color: Colors.black.withOpacity(0.13),
+                  spreadRadius: 10,
+                  blurRadius: 20,
+                  
+              )
+              ]
+
             ),
           )
       ],
