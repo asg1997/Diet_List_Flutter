@@ -87,4 +87,6 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
       ),
     );
   }
+
+
 }
