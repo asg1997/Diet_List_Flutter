@@ -112,28 +112,94 @@ class _MainScreenState extends State<MainScreen> {
   // }
 
   Widget descriptionPanel() {
-    return Column(
-      children: [
-          Container(
-            height: 113,
+    return GestureDetector(
+      onTap: () {
+        print('dsg');
+      },
+      child: Column(
+        children: [
+            Container(
+              height: 113,
+              width: MediaQuery.of(context).size.width,
+              padding: EdgeInsets.only(left: 25, right: 50, top: 20, bottom: 18),
+              margin: EdgeInsets.only(top: 81, left: 25, right: 25),
 
-            margin: EdgeInsets.only(top: 81, left: 25, right: 25),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                offset: Offset.zero,
-                color: Colors.black.withOpacity(0.13),
-                  spreadRadius: 10,
-                  blurRadius: 20,
-                  
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                  offset: Offset.zero,
+                  color: Colors.black.withOpacity(0.13),
+                    spreadRadius: 10,
+                    blurRadius: 20,
+                ),
+                ]
+
+              ),
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Описание диеты',
+                      style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(13, 92, 108, 1)
+                      ),
+                    ),
+                    SizedBox(height: 7),
+                    Flexible(
+                      child: Text('Нельзя жирное соленое перченное жить все нельзя никак недбчх апрвпрпарп перченное жить все нельзя никак недбчх апрвпрпарп',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color: Color.fromRGBO(129, 129, 129, 1),
+                          height: 1.5,
+                          overflow: TextOverflow.fade,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(Icons.touch_app_outlined,
+                            size: 20,
+                              color: Colors.deepOrange,
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
               )
-              ]
-
-            ),
-          )
-      ],
+            )
+        ],
+      ),
     );
   }
 }
+/*child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Описание диеты',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(13, 92, 108, 1)
+                    )
+                      ,),
+                    SizedBox(height: 7),
+                    Flexible(
+                      child: Text('варпоылроылдлрпрлдоллраллодлрлалолровлораоырпоарылдлрпрлдоллраллодлрлалолровлораылдлрпрлдоллраллодлрлалолровлораылдлрпрлдоллраллодлрлалолровлора',
+                        style: TextStyle(
+                        fontSize: 14,
+                        color: Color.fromRGBO(129, 129, 129, 1),
+                        height: 1.5,
+                        overflow: TextOverflow.fade,
+                      ),
+                      ),
+                    ),
+                  ],
+                ),*/
