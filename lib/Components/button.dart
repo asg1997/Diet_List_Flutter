@@ -7,11 +7,13 @@ class Button extends StatefulWidget {
     // дефолтные значения для кнопки, чтобы ничего не полетело
     this.buttonTitle = '',
     this.buttonColor = const Color.fromRGBO(255, 168, 0, 1),
+    this.routeName = '/Main',
   }) : super(key: key);
 
 // Параметры кнопки, которые будут меняться
   String buttonTitle;
   Color buttonColor;
+  String routeName;
 
   @override
   _ButtonState createState() => _ButtonState();
@@ -29,7 +31,7 @@ class _ButtonState extends State<Button> {
       width: 174,
       child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/MainScreen');
+            Navigator.pushNamed(context, widget.routeName);
           },
           style: ElevatedButton.styleFrom(
             primary: widget.buttonColor,
