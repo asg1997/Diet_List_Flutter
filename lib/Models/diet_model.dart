@@ -3,17 +3,17 @@ class Diet {
   String name;
   String description;
   String diet;
-  List<ProductList> productList;
+  List<Product> productList;
   List<Menu> menu;
 
   Diet(this.name, this.description, this.diet, this.menu, this.productList);
 }
 
-class ProductList {
+class Product {
   String name;
   String status;
 
-  ProductList(this.name, this.status);
+  Product(this.name, this.status);
 }
 
 class Menu {
