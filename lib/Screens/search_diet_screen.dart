@@ -39,6 +39,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
                   // можно вызвать параметры в скобках и изменить текст или цвет или и то, и другое
                   Button(
                     buttonTitle: 'Далее',
+                    routeName: '/MainScreen',
                   )
                 ],
               )

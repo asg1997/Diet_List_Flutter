@@ -1,5 +1,6 @@
 import 'package:diet_list_flutter/Components/button.dart';
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
+import 'package:diet_list_flutter/Components/custom_list.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -62,7 +63,8 @@ class _MainScreenState extends State<MainScreen> {
                       )
                     ),
                   ),
-
+                  Expanded(
+                      child: CustomListView())
                 ],
               ),
             ),
@@ -74,7 +76,6 @@ class _MainScreenState extends State<MainScreen> {
 
 
 
-  // TODO: - Реализовать нажатие
   Widget discriptionTile() {
     return GestureDetector( onTap: () {
       print('dgdfgdfgfd');
