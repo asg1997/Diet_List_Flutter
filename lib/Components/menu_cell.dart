@@ -40,7 +40,7 @@ class _MenuCellState extends State<MenuCell> {
                 ],
                 image: DecorationImage(
                   image: AssetImage('assets/osnovnoi.png'),
-                  fit: BoxFit.fill
+                  fit: BoxFit.fitWidth
                 )
               ),
             ),
