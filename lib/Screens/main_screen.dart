@@ -1,13 +1,13 @@
 import 'package:diet_list_flutter/Components/button.dart';
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/Components/custom_list.dart';
+import 'package:diet_list_flutter/Components/description_dialog.dart';
 import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
-  // TODO: - Добавить переменную типа Диета, название и данные оттуда будут
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -38,9 +38,9 @@ class _MainScreenState extends State<MainScreen> {
                 padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
                 child: Column(
                   children: [
-                    discriptionTile(),
+                    discriptionTile(title: 'Описание диеты', description: 'Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload '),
                     SizedBox(height: 10),
-                    discriptionTile(),
+                    discriptionTile(title: 'Режим питания', description: ''),
                     SizedBox(
                       height: 18,
                     ),
@@ -77,7 +77,6 @@ class _MainScreenState extends State<MainScreen> {
                           )),
                     ),
                     // Таблица
-                    // FIXME: - Не вмещается по длине экрана
                     Container(
                       height: 300,
                         child: ListView.builder(
@@ -97,10 +96,16 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  Widget discriptionTile() {
+  Widget discriptionTile({required String title, required String description}) {
     return GestureDetector(
       onTap: () {
-        print('dgdfgdfgfd');
+        showDialog(
+            context: context,
+            builder: (BuildContext context) => DescriptionDialog(
+              title: title,
+            description: description,)
+        );
+
       },
       child: Container(
         height: 113,
@@ -127,7 +132,7 @@ class _MainScreenState extends State<MainScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const [
                     // Заголовок
                     Text(
                       'Описание диеты',

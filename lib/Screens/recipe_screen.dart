@@ -19,7 +19,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
                 image: DecorationImage(
-                    image: AssetImage('assets/osnovnoi.png'),
+                    image: AssetImage('assets/syroc.jpeg'),
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.topCenter)),
           ),
