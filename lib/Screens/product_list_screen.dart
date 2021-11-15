@@ -18,9 +18,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   late List<Product> filteredProductList;
   List<Product> productList = [
-    Product('apple', 'prohibitted'),
-    Product('cola', 'prohibitted'),
-    Product('mango', 'prohibitted'),
+    Product('apple', 'prohibited'),
+    Product('cola', 'prohibited'),
+    Product('mango', 'prohibited'),
     Product('pepsi', 'permitted'),
     Product('potato', 'permitted'),
   ];
@@ -68,9 +68,10 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     buildSearch(),
                     Expanded(
                         child: ListView.builder(
+
                         itemCount: filteredProductList.length,
                         itemBuilder: (BuildContext context, int index){
-                          final product = productList[index];
+                          final product = filteredProductList[index];
                           return ProductCell(product: product );
                         }))
                   ],
@@ -90,10 +91,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
   );
 
   void searchProduct(String query) {
+
     final filteredProductList = productList.where((product) {
-      final titleLower = product.name.toLowerCase();
+      final nameLower = product.name.toLowerCase();
       final searchLower = query.toLowerCase();
-      return titleLower.contains(searchLower);
+      return nameLower.contains(searchLower);
     }).toList();
 
     setState(() {

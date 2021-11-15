@@ -28,7 +28,6 @@ class _ButtonState extends State<Button> {
   Widget _buildButton() {
     return SizedBox(
       height: 61,
-      width: 174,
       child: ElevatedButton(
           onPressed: () {
             Navigator.pushNamed(context, widget.routeName);

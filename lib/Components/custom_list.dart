@@ -12,10 +12,10 @@ class _CustomListViewState extends State<CustomListView> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        padding: const EdgeInsets.only(top: 9),
         itemCount: 2,
         itemBuilder: (BuildContext context, int index) {
           return MenuCell(
+
           );
         }
     );

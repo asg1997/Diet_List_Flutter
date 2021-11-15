@@ -1,6 +1,7 @@
 import 'package:diet_list_flutter/Components/button.dart';
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/Components/custom_list.dart';
+import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,49 +24,71 @@ class _MainScreenState extends State<MainScreen> {
       body: Stack(
         children: [
           // Картинка на заднем фоне
-        Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/fon.png'),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.topCenter)),
-              ),
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/fon.png'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter)),
+          ),
           // Основная информация
           SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  top: 10,
-              left: 20,
-              right: 20),
-              child: Column(
-                children: [
-                  discriptionTile(),
-                  SizedBox(height: 10),
-                  discriptionTile(),
-                  SizedBox(height: 18,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Button(buttonTitle: 'Меню',
-                      routeName: '/MenuScreen',),
-                      Button(buttonTitle: 'Список продуктов',
-                      routeName: '/ProductListScreen',)
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(padding: EdgeInsets.only( top: 20) ,
-                      child: Text(
-                      'Рекомендации',
-                        style: TextStyle(
-                          fontSize: 22,
-                        ),
-                      )
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
+                child: Column(
+                  children: [
+                    discriptionTile(),
+                    SizedBox(height: 10),
+                    discriptionTile(),
+                    SizedBox(
+                      height: 18,
                     ),
-                  ),
-                  Expanded(
-                      child: CustomListView())
-                ],
+                    // Кнопки Меню и Список продуков
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // FIXME: - Кнопки не влезают, если экран уже (SE), нужно настраивать ширину кнопок для каикх-то устройств
+                        Expanded(
+                          child: Button(
+                            buttonTitle: 'Меню',
+                            routeName: '/MenuScreen',
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: Button(
+                            buttonTitle: 'Список продуктов',
+                            routeName: '/ProductListScreen',
+                          ),
+                        )
+                      ],
+                    ),
+                    // Рекомендации надпись
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                          padding: EdgeInsets.only(top: 20),
+                          child: Text(
+                            'Рекомендации',
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
+                          )),
+                    ),
+                    // Таблица
+                    // FIXME: - Не вмещается по длине экрана
+                    Container(
+                      height: 300,
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: 2,
+                            itemBuilder: (BuildContext context, int index) {
+                              return MenuCell();
+
+                            }))
+                  ],
+                ),
               ),
             ),
           ),
@@ -74,12 +97,11 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-
-
   Widget discriptionTile() {
-    return GestureDetector( onTap: () {
-      print('dgdfgdfgfd');
-    },
+    return GestureDetector(
+      onTap: () {
+        print('dgdfgdfgfd');
+      },
       child: Container(
         height: 113,
         decoration: BoxDecoration(
@@ -115,7 +137,9 @@ class _MainScreenState extends State<MainScreen> {
                           color: Color.fromRGBO(13, 92, 108, 1)),
                     ),
                     // Расстояние между заголовком и описанием
-                    SizedBox(height: 3,),
+                    SizedBox(
+                      height: 3,
+                    ),
                     // Описание
                     Expanded(
                       child: Text(
@@ -143,9 +167,11 @@ class _MainScreenState extends State<MainScreen> {
               padding: const EdgeInsets.only(right: 17, top: 16, left: 16),
               child: Align(
                 alignment: Alignment.topCenter,
-                child: Icon(Icons.touch_app_outlined,
+                child: Icon(
+                  Icons.touch_app_outlined,
                   size: 25,
-                  color: Color.fromRGBO(255, 168, 0, 1),),
+                  color: Color.fromRGBO(255, 168, 0, 1),
+                ),
               ),
             )
           ],

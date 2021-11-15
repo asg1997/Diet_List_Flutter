@@ -37,9 +37,12 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
                   // Для того. чтобы получить кнопку, нужно просто написать ее класс
                   // Можно не менять параментры кнопки, тогда они будет без текста
                   // можно вызвать параметры в скобках и изменить текст или цвет или и то, и другое
-                  Button(
-                    buttonTitle: 'Далее',
-                    routeName: '/MainScreen',
+                  SizedBox(
+                    width: 150,
+                    child: Button(
+                      buttonTitle: 'Далее',
+                      routeName: '/MainScreen',
+                    ),
                   )
                 ],
               )
