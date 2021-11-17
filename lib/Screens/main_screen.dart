@@ -40,7 +40,7 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     discriptionTile(title: 'Описание диеты', description: 'PereloadPerforming hot reloadreloadPerforming hot reload '),
                     SizedBox(height: 10),
-                    discriptionTile(title: 'Режим питания', description: ''),
+                    discriptionTile(title: 'Режим питания', description: 'чтобы покушать надо приготовить вкусную еду а готовить всегда лень поэтому легче заказать ага ага а любимая жена не хочет ну и ладно у меня то чебуреки есть а у нее нит'),
                     SizedBox(
                       height: 18,
                     ),
