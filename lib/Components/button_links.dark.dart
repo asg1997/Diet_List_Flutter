@@ -24,7 +24,7 @@ class _ButtonLinksState extends State<ButtonLinks> {
   Widget _buildButtonLinks() {
     return TextButton(
       onPressed: () {
-        Navigator.pushNamed(context, '/');
+        Navigator.pushNamed(context, '/WebViewScreen');
       },
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero

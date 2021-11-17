@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'Screens/links_screen.dart';
 import 'Screens/menu_screen.dart';
 import 'Screens/recipe_screen.dart';
+import 'Screens/web_view.dart';
 
 
 
@@ -21,6 +22,8 @@ void main() => runApp(MaterialApp(
     '/ProductListScreen' : (context) => ProductListScreen(),
     '/RecipeScreen' : (context) => RecipeScreen(),
     '/LinksScreen' : (context) => LinksScreen(),
+    '/WebViewScreen' : (context) => WebViewScreen(),
+
 
   },
 ));

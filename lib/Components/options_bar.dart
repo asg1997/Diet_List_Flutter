@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:diet_list_flutter/helpers/colors_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class OptionsBar extends StatelessWidget {
   }
 
   ListView checkPlatform(BuildContext context) {
-    if (TargetPlatform.iOS == true) {
+    if (Platform.isIOS) {
       // iOS
       return ListView(
         children: [
