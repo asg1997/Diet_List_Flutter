@@ -19,26 +19,22 @@ class _DescriptionDialogState extends State<DescriptionDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      child: Flex(
-        // TODO: Контейнер меняется в зависимости от высоты
-        direction: Axis.vertical,
-        children: [Container(
+      child: UnconstrainedBox(
+        child: Container(
+          width: MediaQuery.of(context).size.width-100,
+          padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
             color: Colors.white,
-            // borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                offset: Offset.zero,
-                color: Colors.black.withOpacity(0.3),
-                blurRadius: 30,
-              )
-            ],
+             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(children: [
             Text(widget.title),
-            Text(widget.description),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(widget.description),
+            ),
           ]),
-        ),]
+        ),
       ),
     );
   }

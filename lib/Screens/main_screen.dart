@@ -38,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
                 padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
                 child: Column(
                   children: [
-                    discriptionTile(title: 'Описание диеты', description: 'Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload '),
+                    discriptionTile(title: 'Описание диеты', description: 'PereloadPerforming hot reloadreloadPerforming hot reload '),
                     SizedBox(height: 10),
                     discriptionTile(title: 'Режим питания', description: ''),
                     SizedBox(
