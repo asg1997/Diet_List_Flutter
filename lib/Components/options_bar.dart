@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:diet_list_flutter/helpers/colors_extension.dart';
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class OptionsBar extends StatelessWidget {
@@ -20,40 +21,32 @@ class OptionsBar extends StatelessWidget {
         children: [
           ListTile(
             title: Text(
-                'Выбрать диету'
+                'Выбрать диету',style: ProjectFonts.text,
             ),
-            leading: Icon(Icons.playlist_add_check_outlined,
-              color: ProjectColors.deepOrange,),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/SearchDietScreen');
             },
           ),
           ListTile(
             title: Text(
-                'Оставить отзыв'
+                'Оставить отзыв',style: ProjectFonts.text
             ),
-            leading: Icon(Icons.rate_review_outlined,
-              color: ProjectColors.deepOrange,),
             onTap: () {
 
             },
           ),
           ListTile(
             title: Text(
-                'Восстановить покупки'
+                'Восстановить покупки',style: ProjectFonts.text
             ),
-            leading: Icon(Icons.monetization_on_outlined,
-              color: ProjectColors.deepOrange,),
             onTap: () {
 
             },
           ),
           ListTile(
             title: Text(
-                'Ссылки на источники'
+                'Ссылки на источники',style: ProjectFonts.text
             ),
-            leading: Icon(Icons.link,
-              color: ProjectColors.deepOrange,),
             onTap: () {
               Navigator.pushNamed(context, '/LinksScreen');
             },
@@ -66,30 +59,24 @@ class OptionsBar extends StatelessWidget {
         children: [
           ListTile(
             title: Text(
-                'Выбрать диету'
+                'Выбрать диету',style: ProjectFonts.text
             ),
-            leading: Icon(Icons.playlist_add_check_outlined,
-              color: ProjectColors.deepOrange,),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/SearchDietScreen');
             },
           ),
           ListTile(
             title: Text(
-                'Оставить отзыв'
+                'Оставить отзыв',style: ProjectFonts.text
             ),
-            leading: Icon(Icons.rate_review_outlined,
-              color: ProjectColors.deepOrange,),
             onTap: () {
 
             },
           ),
           ListTile(
             title: Text(
-                'Ссылки на источники'
+                'Ссылки на источники',style: ProjectFonts.text
             ),
-            leading: Icon(Icons.link,
-              color: ProjectColors.deepOrange,),
             onTap: () {
               Navigator.pushNamed(context, '/LinksScreen');
             },

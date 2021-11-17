@@ -1,4 +1,5 @@
 import 'package:diet_list_flutter/Models/diet_model.dart';
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class ProductCell extends StatefulWidget {
@@ -25,7 +26,8 @@ class _ProductCellState extends State<ProductCell> {
         child: Column(
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text(widget.product.name),
+              Text(widget.product.name,
+              style: ProjectFonts.tableText,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: _setIcon(),

@@ -1,4 +1,5 @@
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class RecipeScreen extends StatefulWidget {
@@ -34,10 +35,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Омлет',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),
+                  style: ProjectFonts.boldTitle
                 )
             ),
             SizedBox(height: 10,),
@@ -80,10 +78,9 @@ class _RecipeScreenState extends State<RecipeScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('Ananas',style: TextStyle(
+                                  Text('Ananas',style: ProjectFonts.tableText
                                   ),
-                                  ),
-                                  Text('1 sht')
+                                  Text('1 sht',style: ProjectFonts.tableSubtext,)
                                 ],
                               ),
                             ),
@@ -104,9 +101,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                 alignment: Alignment.topLeft,
                 child:
             Text('Способ приготовления',
-              style: TextStyle(
-                fontSize: 20,
-              ),
+              style: ProjectFonts.boldTitle
             )
             ),
             SizedBox(height: 15,),
@@ -115,11 +110,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
               child: Text(
                 '1. В глубокую мисочку вбейте яйца, добавьте щепотку соли (при желании также щепотку перца), влейте молоко. Взбейте венчиком или вилкой до однородности.'
                     '2. Жарьте его до готовности не бойтесь не пригорит ангелина я люблю тебя очень сильно иой одуванчЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебя',
-                style: TextStyle(
-                  fontSize: 16,
-                  height: 2,
-                  color: Color.fromRGBO(70, 70, 70, 1)
-                ),
+                style: ProjectFonts.text
               ),
             )
           ],

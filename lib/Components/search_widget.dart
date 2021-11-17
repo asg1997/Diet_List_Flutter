@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatefulWidget {
@@ -23,7 +24,7 @@ class _SearchWidgetState extends State<SearchWidget> {
   @override
   Widget build(BuildContext context) {
     final styleActive = TextStyle(color: Colors.black);
-    final styleHint = TextStyle(color: Colors.black54);
+    final styleHint = ProjectFonts.searchText;
     final style = widget.text.isEmpty ? styleHint:styleActive;
 
     return Container(
@@ -39,7 +40,7 @@ class _SearchWidgetState extends State<SearchWidget> {
         controller: controller,
         decoration: InputDecoration(
           // Иконка поиска
-          icon: Icon(Icons.search, color: style.color),
+          prefixIcon: Icon(Icons.search, color: style.color,),
           suffixIcon: widget.text.isNotEmpty ?
               GestureDetector(
                 // Иконка удалить текст

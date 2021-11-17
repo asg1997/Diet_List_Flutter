@@ -38,7 +38,7 @@ class _LinksScreenState extends State<LinksScreen> {
                 )
             ),
             child: Padding(
-              padding: EdgeInsets.only(top: 44, right: 24, left: 24),
+              padding: EdgeInsets.only(top: 20, right: 24, left: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [

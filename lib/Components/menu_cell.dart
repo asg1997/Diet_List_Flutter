@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class MenuCell extends StatefulWidget {
@@ -34,7 +35,6 @@ class _MenuCellState extends State<MenuCell> {
                   BoxShadow(
                     offset: Offset.zero,
                     color: Colors.black.withOpacity(0.15),
-                    spreadRadius: 5,
                     blurRadius: 10,
                   )
                 ],
@@ -51,19 +51,12 @@ class _MenuCellState extends State<MenuCell> {
                 child: Column(
                   children: [
                     Text('Сырок глазированный Сырок глазированный Сырок глазированный ',
-                      style: TextStyle(
-                       fontSize: 18,
-                       fontWeight: FontWeight.bold,
-                      ),
+                      style: ProjectFonts.cellTitle,
                       maxLines: 2,
                     ),
                     /*SizedBox(height: 5,),*/
                     Text('Яйцо мука перец коктейль суфле манго апельсин',
-                      style: TextStyle(
-                        fontSize: 14,
-                        height: 1.2,
-                        color: Color.fromRGBO(129, 129, 129, 1)
-                      ),
+                      style: ProjectFonts.cellDescription,
                       maxLines: 2,
                     ),
                   ],

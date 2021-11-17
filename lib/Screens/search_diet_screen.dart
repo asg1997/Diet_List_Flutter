@@ -1,5 +1,6 @@
 import 'package:diet_list_flutter/Components/button.dart';
 import 'package:diet_list_flutter/Components/button_first_screen.dart';
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class SearchDietScreen extends StatefulWidget {
@@ -83,7 +84,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
               items: dietsList.map<DropdownMenuItem<String>>((String newValue) {
                 return DropdownMenuItem<String>(
                   value: newValue,
-                  child: Text(newValue),
+                  child: Text(newValue,style: ProjectFonts.tableText,),
                 );
               }).toList(),
             ),

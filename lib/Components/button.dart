@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatefulWidget {
@@ -48,7 +49,7 @@ class _ButtonState extends State<Button> {
             // Теперь этот текст будет браться из параметра
             // доступ к нему можно получить через ключевое слово widget
             widget.buttonTitle,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: ProjectFonts.buttonText,
             textAlign: TextAlign.center,
           )),
     );

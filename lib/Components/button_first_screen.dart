@@ -1,4 +1,5 @@
 import 'package:diet_list_flutter/Components/button.dart';
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,7 @@ class _FirstScreenButtonState extends State<FirstScreenButton> {
             // Теперь этот текст будет браться из параметра
             // доступ к нему можно получить через ключевое слово widget
             widget.buttonTitle,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: ProjectFonts.buttonText,
             textAlign: TextAlign.center,
           )),
     );

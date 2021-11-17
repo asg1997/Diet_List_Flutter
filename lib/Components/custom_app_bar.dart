@@ -1,4 +1,5 @@
 
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends AppBar {
@@ -8,10 +9,7 @@ class CustomAppBar extends AppBar {
     return AppBar(
       centerTitle: true,
       title: Text(title,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 22,
-        ),
+        style: ProjectFonts.navigationTitle
       ),
       backgroundColor: Colors.black.withOpacity(0),
       shadowColor: Colors.black.withOpacity(0),

@@ -4,6 +4,7 @@ import 'package:diet_list_flutter/Components/custom_list.dart';
 import 'package:diet_list_flutter/Components/description_dialog.dart';
 import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:diet_list_flutter/Components/options_bar.dart';
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -73,9 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                           padding: EdgeInsets.only(top: 20),
                           child: Text(
                             'Рекомендации',
-                            style: TextStyle(
-                              fontSize: 22,
-                            ),
+                            style: ProjectFonts.boldTitle
                           )),
                     ),
                     // Таблица
@@ -134,14 +133,11 @@ class _MainScreenState extends State<MainScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children:  [
                     // Заголовок
                     Text(
                       'Описание диеты',
-                      style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(13, 92, 108, 1)),
+                      style: ProjectFonts.greenBoldTitle
                     ),
                     // Расстояние между заголовком и описанием
                     SizedBox(
@@ -151,11 +147,7 @@ class _MainScreenState extends State<MainScreen> {
                     Expanded(
                       child: Text(
                         'Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload ',
-                        style: TextStyle(
-                          height: 1.7,
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
+                        style: ProjectFonts.lightGreyText,
                         overflow: TextOverflow.clip,
                       ),
                     ),
