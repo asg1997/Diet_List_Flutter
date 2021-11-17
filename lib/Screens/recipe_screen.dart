@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class RecipeScreen extends StatefulWidget {
@@ -11,6 +12,8 @@ class _RecipeScreenState extends State<RecipeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar().create('') ,
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
