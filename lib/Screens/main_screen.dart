@@ -3,6 +3,7 @@ import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/Components/custom_list.dart';
 import 'package:diet_list_flutter/Components/description_dialog.dart';
 import 'package:diet_list_flutter/Components/menu_cell.dart';
+import 'package:diet_list_flutter/Components/options_bar.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: OptionsBar(),
       extendBodyBehindAppBar: true,
       appBar: CustomAppBar().create('Гастрит'),
       body: Stack(
