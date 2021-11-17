@@ -6,6 +6,7 @@ class CustomAppBar extends AppBar {
 
   AppBar create(String title) {
     return AppBar(
+      centerTitle: true,
       title: Text(title,
         style: TextStyle(
           color: Colors.white,
