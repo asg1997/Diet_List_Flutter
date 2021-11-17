@@ -1,4 +1,5 @@
 import 'package:diet_list_flutter/Components/button.dart';
+import 'package:diet_list_flutter/Components/button_first_screen.dart';
 import 'package:flutter/material.dart';
 
 class SearchDietScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
                   // можно вызвать параметры в скобках и изменить текст или цвет или и то, и другое
                   SizedBox(
                     width: 150,
-                    child: Button(
+                    child: FirstScreenButton(
                       buttonTitle: 'Далее',
                       routeName: '/MainScreen',
                     ),

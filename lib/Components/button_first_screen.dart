@@ -1,7 +1,10 @@
+import 'package:diet_list_flutter/Components/button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Button extends StatefulWidget {
-  Button({
+// TODO: - Сделать класс наследуемым от кнопки Button
+class FirstScreenButton extends StatefulWidget {
+  FirstScreenButton({
     Key? key,
 
     // дефолтные значения для кнопки, чтобы ничего не полетело
@@ -16,15 +19,15 @@ class Button extends StatefulWidget {
   String routeName;
 
   void buttonTapped(BuildContext context) {
-    Navigator.pushNamed(context, routeName);
+    Navigator.pushReplacementNamed(context, routeName);
   }
 
   @override
-  _ButtonState createState() => _ButtonState();
+  _FirstScreenButtonState createState() => _FirstScreenButtonState();
 
 }
 
-class _ButtonState extends State<Button> {
+class _FirstScreenButtonState extends State<FirstScreenButton> {
   @override
   Widget build(BuildContext context) {
     return _buildButton();
