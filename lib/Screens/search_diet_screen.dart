@@ -1,16 +1,30 @@
 import 'package:diet_list_flutter/Components/button.dart';
 import 'package:diet_list_flutter/Components/button_first_screen.dart';
+import 'package:diet_list_flutter/Service/firebase_storage_service.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class SearchDietScreen extends StatefulWidget {
   const SearchDietScreen({Key? key}) : super(key: key);
 
+
   @override
   _SearchDietScreenState createState() => _SearchDietScreenState();
 }
 
+
 class _SearchDietScreenState extends State<SearchDietScreen> {
+  @override
+  initState() {
+    super.initState();
+    final dietsList = FirebaseStorageService.downloadDietsList();
+    dietsList.then((list) => this.dietsList = list);
+    // TODO: - Нужен futureBuilder, чтобы работать с полученными данными
+    // dietsList.then((dietsList) => this.dietsList = (dietsList) as List<String>);
+  }
+
+  
+
   @override
   String _mySelection = 'Аритмия';
   List<String> dietsList = [
@@ -21,7 +35,10 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
     'Псориаз'
   ];
 
+
+
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         child: Center(
@@ -93,6 +110,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
       ),
     );
   }
+
 
 
 }

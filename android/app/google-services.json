@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "708458170314",
+    "project_id": "dietlist-42c42",
+    "storage_bucket": "dietlist-42c42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708458170314:android:c346de26988a650a4c3133",
+        "android_client_info": {
+          "package_name": "com.drobotuhina.DietList"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708458170314-480t52snojq82fo7ohb6n44m7ch20fir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaEhl0iJZyv89ptnGQdz7IPKqDzRMm7-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708458170314-480t52snojq82fo7ohb6n44m7ch20fir.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "708458170314-ku82nom24lsk2c91decrofo4uo08665o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.appsite.DietList"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,20 +31,12 @@ class _DescriptionDialogState extends State<DescriptionDialog> {
              borderRadius: BorderRadius.circular(20),
           ),
           child: Column(children: [
-            Text(widget.title,style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-              color: Color.fromRGBO(13, 92, 108, 1)
-            ),
+            Text(widget.title,style: ProjectFonts.greenBoldTitle
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(widget.description,
-              style: TextStyle(
-              fontSize: 14,
-              color: Color.fromRGBO(129, 129, 129, 1),
-              height: 1.7
-              ),
+              style: ProjectFonts.lightGreyText
               ),
             ),
           ]),
