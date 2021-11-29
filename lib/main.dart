@@ -15,8 +15,6 @@ Future main() async {
 
   await Firebase.initializeApp();
 
-
-
   runApp(MaterialApp(
     theme: ThemeData(
       primaryColor: Color.fromRGBO(48, 190, 190, 1),
@@ -24,7 +22,7 @@ Future main() async {
     initialRoute: '/SearchDietScreen',
     routes: {
       '/SearchDietScreen' : (context) => SearchDietScreen(),
-      '/MainScreen' : (context) => MainScreen(),
+      // '/MainScreen' : (context) => MainScreen(),
       '/MenuScreen' : (context) => MenuScreen(),
       '/ProductListScreen' : (context) => ProductListScreen(),
       '/RecipeScreen' : (context) => RecipeScreen(),

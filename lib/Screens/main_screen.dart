@@ -1,22 +1,34 @@
 import 'package:diet_list_flutter/Components/button.dart';
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
-import 'package:diet_list_flutter/Components/custom_list.dart';
 import 'package:diet_list_flutter/Components/description_dialog.dart';
 import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:diet_list_flutter/Components/options_bar.dart';
+import 'package:diet_list_flutter/Models/diet_model.dart';
+import 'package:diet_list_flutter/Service/diet_service.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
-
+  const MainScreen(this.diet, {Key? key}) : super(key: key);
+  final Future<Diet> diet;
 
   @override
   _MainScreenState createState() => _MainScreenState();
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+
   List<String> list = ['sdffsd', 'sdfsaab'];
+  // TODO: Добавить опциональную диету
+  // Diet? diet;
+
+  @override
+  initState() {
+    super.initState();
+
+    widget.diet.then((value) => print(value.name));
+  }
 
   @override
   Widget build(BuildContext context) {

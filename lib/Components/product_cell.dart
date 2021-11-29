@@ -1,4 +1,4 @@
-import 'package:diet_list_flutter/Models/diet_model.dart';
+import 'package:diet_list_flutter/Models/product_model.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 

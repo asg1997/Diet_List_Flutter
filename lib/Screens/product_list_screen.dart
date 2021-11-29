@@ -1,8 +1,7 @@
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
-import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:diet_list_flutter/Components/product_cell.dart';
 import 'package:diet_list_flutter/Components/search_widget.dart';
-import 'package:diet_list_flutter/Models/diet_model.dart';
+import 'package:diet_list_flutter/Models/product_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductListScreen extends StatefulWidget {

@@ -5,11 +5,16 @@ import 'package:flutter/material.dart';
 class LinksScreen extends StatefulWidget {
   const LinksScreen({Key? key}) : super(key: key);
 
+
+
   @override
   _LinksScreenState createState() => _LinksScreenState();
 }
 
 class _LinksScreenState extends State<LinksScreen> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,15 +22,7 @@ class _LinksScreenState extends State<LinksScreen> {
       appBar: CustomAppBar().create('Ссылки на источник'),
       body: Stack(
         children: [
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/fon.png'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter
-                )
-            ),
-          ),
+          addImage(),
           SafeArea(
               child: Container(
             width: MediaQuery.of(context).size.width,
@@ -56,6 +53,18 @@ class _LinksScreenState extends State<LinksScreen> {
           )
           )
         ],
+      ),
+    );
+  }
+
+  Widget addImage() {
+    return Container(
+      decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/fon.png'),
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.topCenter
+          )
       ),
     );
   }

@@ -1,4 +1,3 @@
-import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
