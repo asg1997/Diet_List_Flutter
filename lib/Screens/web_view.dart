@@ -3,7 +3,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
    WebViewScreen({Key? key,
-    this.link = 'https://pub.dev/packages/webview_flutter/versions',
+    this.link = '',
   }) : super(key: key);
 
   String link;

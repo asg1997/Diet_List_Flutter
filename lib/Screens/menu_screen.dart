@@ -1,20 +1,31 @@
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/Components/menu_cell.dart';
+import 'package:diet_list_flutter/Models/dish_model.dart';
 import 'package:flutter/material.dart';
 
 class MenuScreen extends StatefulWidget {
-  const MenuScreen({Key? key}) : super(key: key);
+  const MenuScreen({Key? key, required this.dishes}) : super(key: key);
+
+  final List<Dish> dishes;
 
   @override
   _MenuScreenState createState() => _MenuScreenState();
 }
 
 class _MenuScreenState extends State<MenuScreen> {
+
+  @override
+  initState() {
+    super.initState();
+
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: CustomAppBar().create('Список продуктов'),
+      appBar: CustomAppBar().create('Рецепты'),
       body: Stack(
         children: [
           Container(
@@ -43,9 +54,9 @@ class _MenuScreenState extends State<MenuScreen> {
                   children: [
                     Expanded(
                         child: ListView.builder(
-                            itemCount: 6,
+                            itemCount: widget.dishes.length,
                             itemBuilder: (BuildContext context, int index){
-                              return MenuCell();
+                              return MenuCell(dish: widget.dishes[index],);
                             }))
                   ],
                 ),

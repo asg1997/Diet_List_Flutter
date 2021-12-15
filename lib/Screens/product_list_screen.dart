@@ -5,7 +5,10 @@ import 'package:diet_list_flutter/Models/product_model.dart';
 import 'package:flutter/material.dart';
 
 class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({Key? key}) : super(key: key);
+  ProductListScreen({Key? key, required this.productList}) : super(key: key);
+
+  List<Product> productList;
+
 
   @override
   _ProductListScreenState createState() => _ProductListScreenState();
@@ -16,20 +19,13 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
 
   late List<Product> filteredProductList;
-  List<Product> productList = [
-    Product('apple', 'prohibited'),
-    Product('cola', 'prohibited'),
-    Product('mango', 'prohibited'),
-    Product('pepsi', 'permitted'),
-    Product('potato', 'permitted'),
-  ];
 
 
   @override
   void initState() {
     super.initState();
 
-    filteredProductList = productList;
+    filteredProductList = widget.productList;
   }
 
 
@@ -91,7 +87,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
 
   void searchProduct(String query) {
 
-    final filteredProductList = productList.where((product) {
+    final filteredProductList = widget.productList.where((product) {
       final nameLower = product.name.toLowerCase();
       final searchLower = query.toLowerCase();
       return nameLower.contains(searchLower);

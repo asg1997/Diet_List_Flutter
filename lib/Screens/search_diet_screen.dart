@@ -5,7 +5,6 @@ import 'package:diet_list_flutter/Service/diet_service.dart';
 import 'package:diet_list_flutter/helpers/colors_extension.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
-
 import 'main_screen.dart';
 
 class SearchDietScreen extends StatefulWidget {
@@ -21,7 +20,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
   @override
   initState() {
     super.initState();
-    this.dietsList = DietListService.getDietsList();
+    dietsList = DietListService.getDietsList();
   }
 
   String _mySelection = 'Аритмия';
@@ -42,17 +41,12 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
 
                   case ConnectionState.done:
                     if (dietsList != null) {
-                      return screenWithData(dietsList!);
+                      return screenWithData(dietsList);
                     } else {
                       return screenWithData([]);
                     }
-
                   default:
-                    if (snapshot.error != null) {
-                      return Text('Ошибка во FB ${snapshot.error.toString()}');
-                    } else {
-                      return Text('Ошибка');
-                    }
+                      return Text('Ошибка. Повторите позже');
                 }
               },
             )

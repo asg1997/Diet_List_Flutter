@@ -9,12 +9,12 @@ part of 'diet_model.dart';
 Diet _$DietFromJson(Map<String, dynamic> json) => Diet(
       json['name'] as String,
       json['description'] as String,
-      json['diet'] as String?,
-      (json['menu'] as List<dynamic>?)
-          ?.map((e) => Menu.fromJson(e as Map<String, dynamic>))
+      json['diet'] as String,
+      (json['dishes'] as List<dynamic>)
+          .map((e) => Dish.fromJson(e as Map<String, dynamic>))
           .toList(),
-      (json['productList'] as List<dynamic>?)
-          ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
+      (json['productList'] as List<dynamic>)
+          .map((e) => Product.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -23,5 +23,5 @@ Map<String, dynamic> _$DietToJson(Diet instance) => <String, dynamic>{
       'description': instance.description,
       'diet': instance.diet,
       'productList': instance.productList,
-      'menu': instance.menu,
+      'dishes': instance.dishes,
     };

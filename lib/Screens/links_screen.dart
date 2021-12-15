@@ -39,14 +39,19 @@ class _LinksScreenState extends State<LinksScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
-                  Text('В глубокую мисочку вбейте яйца, добавьте щепотку соли (при желании также щепотку перца), влейте молоко. Взбейте венчиком или вилкой до однородности.',
+                  Text('Приложение "Твой диетолог" носит ознакомительный характер. Имеются противопоказания. Для установления точной диеты обратитесь к специалисту.\n\nСсылки на источники информации:',
                   style: TextStyle(
                     fontSize: 16,
                     height: 2
                   ),
                   ),
                   SizedBox(height: 20),
-                  ButtonLinks(buttonTitle: 'https://www.pinterest.ru/pin/36479163857',)
+                  ButtonLinks(buttonTitle: 'https://edaplus.info/feeding-in-sickness.html',),
+                  ButtonLinks(buttonTitle: 'https://miin.ru/blog/lechebnye-diety/',),
+                  ButtonLinks(buttonTitle: 'https://cmd74.ru/lechebnye-stoly-diety/',),
+                  ButtonLinks(buttonTitle: 'https://medongroup-spb.ru/company/articles/diety-pri-razlichnykh-zabolevaniyakh/',),
+                  ButtonLinks(buttonTitle: 'https://doktorstolet.ru/articles/terapiya/lechebnye-diety/',),
+                  ButtonLinks(buttonTitle: 'https://azbyka.ru/recept/lechebnye-stoly-diety-1-15-po-pevzneru-tablicy-produktov-i-rezhim-pitanija/',)
                 ],
               ),
             ),

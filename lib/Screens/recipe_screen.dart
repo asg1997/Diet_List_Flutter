@@ -1,9 +1,13 @@
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:diet_list_flutter/Models/dish_model.dart';
 
 class RecipeScreen extends StatefulWidget {
-  const RecipeScreen({Key? key}) : super(key: key);
+  const RecipeScreen({Key? key, required this.dish, required this.image}) : super(key: key);
+
+  final Image image;
+  final Dish dish;
 
   @override
   _RecipeScreenState createState() => _RecipeScreenState();
@@ -18,13 +22,13 @@ class _RecipeScreenState extends State<RecipeScreen> {
       body: SingleChildScrollView(
         child: Column(children: [
           Container(
-            height: 239,
+            height: 260,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
                 image: DecorationImage(
-                    image: AssetImage('assets/syroc.jpeg'),
-                    fit: BoxFit.fitWidth,
+                    image: widget.image.image,
+                    fit: BoxFit.fitHeight,
                     alignment: Alignment.topCenter)),
           ),
           Padding(
@@ -33,8 +37,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
           children: [
             Align(
                 alignment: Alignment.centerLeft,
-                child: Text(
-                  'Омлет',
+                child: Text(widget.dish.name,
                   style: ProjectFonts.boldTitle
                 )
             ),
@@ -62,7 +65,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
                   child: ListView.builder(
                     padding: EdgeInsets.only(top: 0),
                       shrinkWrap: true,
-                      itemCount: 20,
+                      itemCount: widget.dish.recipe.ingredients.length,
                       itemBuilder: (BuildContext context, int index){
                         // настройка ячейки
                     return Container(
@@ -78,9 +81,11 @@ class _RecipeScreenState extends State<RecipeScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text('Ananas',style: ProjectFonts.tableText
+                                  Text(widget.dish.recipe.ingredients[index].name,
+                                      style: ProjectFonts.tableText
                                   ),
-                                  Text('1 sht',style: ProjectFonts.tableSubtext,)
+                                  Text(widget.dish.recipe.ingredients[index].amount,
+                                    style: ProjectFonts.tableSubtext,)
                                 ],
                               ),
                             ),
@@ -107,9 +112,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             SizedBox(height: 15,),
             Align(
               alignment: Alignment.topLeft,
-              child: Text(
-                '1. В глубокую мисочку вбейте яйца, добавьте щепотку соли (при желании также щепотку перца), влейте молоко. Взбейте венчиком или вилкой до однородности.'
-                    '2. Жарьте его до готовности не бойтесь не пригорит ангелина я люблю тебя очень сильно иой одуванчЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебяЖарьте его до готовности не бойтесь не пригорит ангелина я люблю тебя',
+              child: Text(widget.dish.recipe.process,
                 style: ProjectFonts.text
               ),
             )

@@ -1,15 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
-import 'package:diet_list_flutter/Models/diet_model.dart';
-import 'package:diet_list_flutter/Service/json_decoder_service.dart';
-import 'package:diet_list_flutter/Service/network_service.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class FirebaseStorageService {
 

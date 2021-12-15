@@ -1,10 +1,15 @@
-import 'package:diet_list_flutter/Components/button.dart';
+
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/Components/description_dialog.dart';
-import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:diet_list_flutter/Components/options_bar.dart';
+import 'package:diet_list_flutter/Managers/alert_dialog.dart';
 import 'package:diet_list_flutter/Models/diet_model.dart';
-import 'package:diet_list_flutter/Service/diet_service.dart';
+import 'package:diet_list_flutter/Models/dish_model.dart';
+import 'package:diet_list_flutter/Models/product_model.dart';
+import 'package:diet_list_flutter/Screens/menu_preview_screen.dart';
+import 'package:diet_list_flutter/Screens/menu_screen.dart';
+import 'package:diet_list_flutter/Screens/product_list_screen.dart';
+import 'package:diet_list_flutter/helpers/colors_extension.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -18,94 +23,49 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-
-  List<String> list = ['sdffsd', 'sdfsaab'];
-  // TODO: Добавить опциональную диету
-  // Diet? diet;
-
   @override
   initState() {
     super.initState();
 
-    widget.diet.then((value) => print(value.name));
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: OptionsBar(),
-      extendBodyBehindAppBar: true,
-      appBar: CustomAppBar().create('Гастрит'),
-      body: Stack(
-        children: [
-          // Картинка на заднем фоне
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/fon.png'),
-                    fit: BoxFit.fitWidth,
-                    alignment: Alignment.topCenter)),
-          ),
-          // Основная информация
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
-                child: Column(
-                  children: [
-                    discriptionTile(title: 'Описание диеты', description: 'PereloadPerforming hot reloadreloadPerforming hot reload '),
-                    SizedBox(height: 10),
-                    discriptionTile(title: 'Режим питания', description: 'чтобы покушать надо приготовить вкусную еду а готовить всегда лень поэтому легче заказать ага ага а любимая жена не хочет ну и ладно у меня то чебуреки есть а у нее нит'),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    // Кнопки Меню и Список продуков
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        // FIXME: - Кнопки не влезают, если экран уже (SE), нужно настраивать ширину кнопок для каикх-то устройств
-                        Expanded(
-                          child: Button(
-                            buttonTitle: 'Меню',
-                            routeName: '/MenuScreen',
-                          ),
-                        ),
-                        SizedBox(width: 10,),
-                        Expanded(
-                          child: Button(
-                            buttonTitle: 'Список продуктов',
-                            routeName: '/ProductListScreen',
-                          ),
-                        )
-                      ],
-                    ),
-                    // Рекомендации надпись
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                          padding: EdgeInsets.only(top: 20),
-                          child: Text(
-                            'Рекомендации',
-                            style: ProjectFonts.boldTitle
-                          )),
-                    ),
-                    // Таблица
-                    Container(
-                      height: 300,
-                        child: ListView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: 2,
-                            itemBuilder: (BuildContext context, int index) {
-                              return MenuCell();
+    Future.delayed(Duration.zero, () => AlertManager().showAlert(context));
 
-                            }))
-                  ],
-                ),
+    return FutureBuilder<Diet>(
+    future: widget.diet,
+      builder: (context, snapshot) {
+      final diet = snapshot.data;
+      switch (snapshot.connectionState) {
+        case ConnectionState.waiting:
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+              color: Colors.white,
               ),
-            ),
-          ),
-        ],
-      ),
+              CircularProgressIndicator(color: ProjectColors.mainOrange),
+            ],
+          );
+        case ConnectionState.done:
+          if (diet != null) {
+            return screenWithData(diet);
+          }  else {
+            return Scaffold(body: Center(
+                child: Text('Ошибка получения данных',
+              style: TextStyle(color: Colors.black),)));
+          }
+
+        default:
+          if (snapshot.error != null) {
+            return Text('Ошибка во FB ${snapshot.error.toString()}');
+          } else {
+            return Text('Ошибка');
+          }
+      }
+      },
     );
   }
 
@@ -148,7 +108,7 @@ class _MainScreenState extends State<MainScreen> {
                   children:  [
                     // Заголовок
                     Text(
-                      'Описание диеты',
+                      title,
                       style: ProjectFonts.greenBoldTitle
                     ),
                     // Расстояние между заголовком и описанием
@@ -158,7 +118,7 @@ class _MainScreenState extends State<MainScreen> {
                     // Описание
                     Expanded(
                       child: Text(
-                        'Performing hot reloadPerforming hot reloadPerforming hot reloadPerforming hot reloadreloadPerforming hot reloadreloadPerforming hot reload ',
+                       description,
                         style: ProjectFonts.lightGreyText,
                         overflow: TextOverflow.clip,
                       ),
@@ -191,5 +151,136 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  Widget screenWithData(Diet diet) {
+    return Scaffold(
+      drawer: OptionsBar(),
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar().create(diet.name),
+      body: Stack(
+        children: [
+          // Картинка на заднем фоне
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/fon.png'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.topCenter)),
+          ),
+          // Основная информация
+          SafeArea(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
+                  child: Column(
+                    children: [
+                      discriptionTile(title: 'Описание диеты', description: diet.description),
+                      SizedBox(height: 10),
+                      discriptionTile(title: 'Режим питания', description: diet.diet),
+                      SizedBox(
+                        height: 18,
+                      ),
+                      // Кнопки Меню и Список продуков
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // FIXME: - Кнопки не влезают, если экран уже (SE), нужно настраивать ширину кнопок для каикх-то устройств
+                          Expanded(
 
+                            child: menuButton(diet.dishes)
+                          ),
+                          SizedBox(width: 10,),
+                          Expanded(
+                            child: productListButton(diet.productList)
+                          )
+                        ],
+                      ),
+                      // Рекомендации надпись
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                            padding: EdgeInsets.only(top: 20),
+                            child: Text(
+                                'Рекомендации',
+                                style: ProjectFonts.boldTitle
+                            )),
+                      ),
+                      // Таблица
+                      // TODO: - сделать рекомендации
+                      // Container(
+                      //     height: 300,
+                      //     child: ListView.builder(
+                      //         physics: NeverScrollableScrollPhysics(),
+                      //         itemCount: 2,
+                      //         itemBuilder: (BuildContext context, int index) {
+                      //           return MenuCell(dish: widget.menu[0].dishes[index]);
+                      //
+                      //         }))
+                    ],
+                  ),
+                ),
+              )
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+  Widget menuButton(List<Dish> dishes) {
+    return SizedBox(
+      height: 61,
+      child: ElevatedButton(
+          onPressed: () {
+            menuTapped(context, dishes);
+          },
+          style: ElevatedButton.styleFrom(
+            primary: ProjectColors.mainOrange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(210),
+            ),
+          ),
+          child: Text(
+            // Раньше прописывали текст кнопки здесь
+            // Теперь этот текст будет браться из параметра
+            // доступ к нему можно получить через ключевое слово widget
+            'Рецепты',
+            style: ProjectFonts.buttonText,
+            textAlign: TextAlign.center,
+          )),
+    );
+  }
+  Widget productListButton(List<Product> productList) {
+    return SizedBox(
+      height: 61,
+      child: ElevatedButton(
+          onPressed: () {
+            productListTapped(context, productList);
+          },
+          style: ElevatedButton.styleFrom(
+            primary: ProjectColors.mainOrange,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(210),
+            ),
+          ),
+          child: Text(
+            // Раньше прописывали текст кнопки здесь
+            // Теперь этот текст будет браться из параметра
+            // доступ к нему можно получить через ключевое слово widget
+            'Список продуктов',
+            style: ProjectFonts.buttonText,
+            textAlign: TextAlign.center,
+          )),
+    );
+  }
+
+  void menuTapped(BuildContext context, List<Dish> dishes) {
+    // TODO: - Логика с переходом на купленное некупленное меню
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPreviewScreen(dishes: dishes)));
+    // Navigator.push(context, MaterialPageRoute(builder: (context) => MenuScreen(dishes: dishes)));
+  }
+
+  void productListTapped(BuildContext context, List<Product> productList ) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen(productList: productList)));
+  }
 }

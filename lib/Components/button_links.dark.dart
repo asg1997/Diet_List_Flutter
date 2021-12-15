@@ -1,3 +1,4 @@
+import 'package:diet_list_flutter/Screens/web_view.dart';
 import 'package:flutter/material.dart';
 
 class ButtonLinks extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ButtonLinksState extends State<ButtonLinks> {
   Widget _buildButtonLinks() {
     return TextButton(
       onPressed: () {
-        Navigator.pushNamed(context, '/WebViewScreen');
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => WebViewScreen(link: widget.buttonTitle,)));
       },
       style: TextButton.styleFrom(
         padding: EdgeInsets.zero

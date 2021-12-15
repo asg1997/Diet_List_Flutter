@@ -1,11 +1,13 @@
 import 'dart:io';
+import 'package:diet_list_flutter/Service/review_service.dart';
 
-import 'package:diet_list_flutter/helpers/colors_extension.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
 
 class OptionsBar extends StatelessWidget {
-  const OptionsBar({Key? key}) : super(key: key);
+  OptionsBar({Key? key}) : super(key: key);
+
+  final RatingService _ratingService = RatingService();
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class OptionsBar extends StatelessWidget {
                 'Оставить отзыв',style: ProjectFonts.text
             ),
             onTap: () {
-
+              _ratingService.showRating();
             },
           ),
           ListTile(
@@ -70,7 +72,7 @@ class OptionsBar extends StatelessWidget {
                 'Оставить отзыв',style: ProjectFonts.text
             ),
             onTap: () {
-
+          _ratingService.showRating();
             },
           ),
           ListTile(
