@@ -30,10 +30,22 @@
 @import path_provider_ios;
 #endif
 
+#if __has_include(<purchases_flutter/PurchasesFlutterPlugin.h>)
+#import <purchases_flutter/PurchasesFlutterPlugin.h>
+#else
+@import purchases_flutter;
+#endif
+
 #if __has_include(<shared_preferences_ios/FLTSharedPreferencesPlugin.h>)
 #import <shared_preferences_ios/FLTSharedPreferencesPlugin.h>
 #else
 @import shared_preferences_ios;
+#endif
+
+#if __has_include(<sqflite/SqflitePlugin.h>)
+#import <sqflite/SqflitePlugin.h>
+#else
+@import sqflite;
 #endif
 
 #if __has_include(<url_launcher_ios/FLTURLLauncherPlugin.h>)
@@ -55,7 +67,9 @@
   [FLTFirebaseStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseStoragePlugin"]];
   [InAppReviewPlugin registerWithRegistrar:[registry registrarForPlugin:@"InAppReviewPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];
+  [PurchasesFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"PurchasesFlutterPlugin"]];
   [FLTSharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTSharedPreferencesPlugin"]];
+  [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
   [FLTURLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTURLLauncherPlugin"]];
   [FLTWebViewFlutterPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTWebViewFlutterPlugin"]];
 }

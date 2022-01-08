@@ -17,12 +17,12 @@ class _ProductCellState extends State<ProductCell> {
     return buildProduct();
   }
 
-  // TODO: сделать иконку
+  
   Widget buildProduct() => Container(
         height: 52,
         color: Colors.white,
 
-        // TODO: Настроить размеры
+
         child: Column(
           children: [
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
@@ -41,7 +41,7 @@ class _ProductCellState extends State<ProductCell> {
         ),
       );
 
-  // TODO: Добавить картинки
+
   Icon _setIcon() {
     switch (widget.product.status) {
       case 'permitted':

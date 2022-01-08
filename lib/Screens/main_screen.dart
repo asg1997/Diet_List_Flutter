@@ -1,20 +1,23 @@
-
 import 'package:diet_list_flutter/Components/custom_app_bar.dart';
 import 'package:diet_list_flutter/Components/description_dialog.dart';
+import 'package:diet_list_flutter/Components/menu_cell.dart';
 import 'package:diet_list_flutter/Components/options_bar.dart';
 import 'package:diet_list_flutter/Managers/alert_dialog.dart';
 import 'package:diet_list_flutter/Models/diet_model.dart';
 import 'package:diet_list_flutter/Models/dish_model.dart';
-import 'package:diet_list_flutter/Models/product_model.dart';
+import 'package:diet_list_flutter/Models/product_model.dart' as product_model;
 import 'package:diet_list_flutter/Screens/menu_preview_screen.dart';
 import 'package:diet_list_flutter/Screens/menu_screen.dart';
 import 'package:diet_list_flutter/Screens/product_list_screen.dart';
+import 'package:diet_list_flutter/Service/iap_service.dart';
 import 'package:diet_list_flutter/helpers/colors_extension.dart';
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen(this.diet, {Key? key}) : super(key: key);
+
   final Future<Diet> diet;
 
   @override
@@ -22,11 +25,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   @override
   initState() {
     super.initState();
-
   }
 
   @override
@@ -34,37 +35,41 @@ class _MainScreenState extends State<MainScreen> {
     Future.delayed(Duration.zero, () => AlertManager().showAlert(context));
 
     return FutureBuilder<Diet>(
-    future: widget.diet,
+      future: widget.diet,
       builder: (context, snapshot) {
-      final diet = snapshot.data;
-      switch (snapshot.connectionState) {
-        case ConnectionState.waiting:
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              color: Colors.white,
-              ),
-              CircularProgressIndicator(color: ProjectColors.mainOrange),
-            ],
-          );
-        case ConnectionState.done:
-          if (diet != null) {
-            return screenWithData(diet);
-          }  else {
-            return Scaffold(body: Center(
-                child: Text('Ошибка получения данных',
-              style: TextStyle(color: Colors.black),)));
-          }
+        final diet = snapshot.data;
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  color: Colors.white,
+                ),
+                CircularProgressIndicator(color: ProjectColors.mainOrange),
+              ],
+            );
+          case ConnectionState.done:
+            if (diet != null) {
+              return screenWithData(diet);
+            } else {
+              return Scaffold(
+                  body: Center(
+                      child: Text(
+                'Ошибка получения данных',
+                style: TextStyle(color: Colors.black),
+              )));
+            }
 
-        default:
-          if (snapshot.error != null) {
-            return Text('Ошибка во FB ${snapshot.error.toString()}');
-          } else {
-            return Text('Ошибка');
-          }
-      }
+          default:
+            if (snapshot.error != null) {
+              return Text('Ошибка во FB ${snapshot.error.toString()}');
+            } else {
+              return Text('Ошибка');
+            }
+        }
       },
     );
   }
@@ -75,10 +80,9 @@ class _MainScreenState extends State<MainScreen> {
         showDialog(
             context: context,
             builder: (BuildContext context) => DescriptionDialog(
-              title: title,
-            description: description,)
-        );
-
+                  title: title,
+                  description: description,
+                ));
       },
       child: Container(
         height: 113,
@@ -105,12 +109,9 @@ class _MainScreenState extends State<MainScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children:  [
+                  children: [
                     // Заголовок
-                    Text(
-                      title,
-                      style: ProjectFonts.greenBoldTitle
-                    ),
+                    Text(title, style: ProjectFonts.greenBoldTitle),
                     // Расстояние между заголовком и описанием
                     SizedBox(
                       height: 3,
@@ -118,7 +119,7 @@ class _MainScreenState extends State<MainScreen> {
                     // Описание
                     Expanded(
                       child: Text(
-                       description,
+                        description,
                         style: ProjectFonts.lightGreyText,
                         overflow: TextOverflow.clip,
                       ),
@@ -169,63 +170,66 @@ class _MainScreenState extends State<MainScreen> {
           // Основная информация
           SafeArea(
               child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
-                  child: Column(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 3, left: 20, right: 20),
+              child: Column(
+                children: [
+                  discriptionTile(
+                      title: 'Описание диеты', description: diet.description),
+                  SizedBox(height: 10),
+                  discriptionTile(
+                      title: 'Режим питания', description: diet.diet),
+                  SizedBox(
+                    height: 18,
+                  ),
+                  // Кнопки Меню и Список продуков
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      discriptionTile(title: 'Описание диеты', description: diet.description),
-                      SizedBox(height: 10),
-                      discriptionTile(title: 'Режим питания', description: diet.diet),
+                      // FIXME: - Кнопки не влезают, если экран уже (SE), нужно настраивать ширину кнопок для каикх-то устройств
+                      Expanded(child: menuButton(diet.dishes)),
                       SizedBox(
-                        height: 18,
+                        width: 10,
                       ),
-                      // Кнопки Меню и Список продуков
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // FIXME: - Кнопки не влезают, если экран уже (SE), нужно настраивать ширину кнопок для каикх-то устройств
-                          Expanded(
-
-                            child: menuButton(diet.dishes)
-                          ),
-                          SizedBox(width: 10,),
-                          Expanded(
-                            child: productListButton(diet.productList)
-                          )
-                        ],
-                      ),
-                      // Рекомендации надпись
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                            padding: EdgeInsets.only(top: 20),
-                            child: Text(
-                                'Рекомендации',
-                                style: ProjectFonts.boldTitle
-                            )),
-                      ),
-                      // Таблица
-                      // TODO: - сделать рекомендации
-                      // Container(
-                      //     height: 300,
-                      //     child: ListView.builder(
-                      //         physics: NeverScrollableScrollPhysics(),
-                      //         itemCount: 2,
-                      //         itemBuilder: (BuildContext context, int index) {
-                      //           return MenuCell(dish: widget.menu[0].dishes[index]);
-                      //
-                      //         }))
+                      Expanded(child: productListButton(diet.productList))
                     ],
                   ),
-                ),
-              )
-          ),
+                  // Рекомендации надпись
+                  // Align(
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Padding(
+                  //       padding: EdgeInsets.only(top: 20),
+                  //       child: Text('Рекомендации',
+                  //           style: ProjectFonts.boldTitle)),
+                  // ),
+                  // Таблица
+                  // TODO: - сделать рекомендации
+
+                  // Container(
+                  // height: 300,
+                  // // TODO: Доделать логику отображения рекомендаций
+                  // child: IAPService.isProductPurchased(productId: ProductId.menu_full) ?? listPurchased() : listNotPurchased(diet),
+                ],
+              ),
+            ),
+          )),
         ],
       ),
     );
   }
 
+  // Widget listPurchased(Diet diet) {
 
+  // }
+
+  Widget listNotPurchased(Diet diet) {
+    return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: 2,
+        itemBuilder: (BuildContext context, int index) {
+          return MenuCell(dish: diet.dishes[index]);
+        });
+  }
 
   Widget menuButton(List<Dish> dishes) {
     return SizedBox(
@@ -250,7 +254,8 @@ class _MainScreenState extends State<MainScreen> {
           )),
     );
   }
-  Widget productListButton(List<Product> productList) {
+
+  Widget productListButton(List<product_model.Product> productList) {
     return SizedBox(
       height: 61,
       child: ElevatedButton(
@@ -274,13 +279,29 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  void menuTapped(BuildContext context, List<Dish> dishes) {
-    // TODO: - Логика с переходом на купленное некупленное меню
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPreviewScreen(dishes: dishes)));
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => MenuScreen(dishes: dishes)));
+  void menuTapped(BuildContext context, List<Dish> dishes) async {
+    // TODO: - попробовать взять данные из UserDefaults
+    // По сути это просто файл с данными, к нему надо найти путь? И можно ли
+    final isMenuPurchased =
+        await IAPService.isProductPurchased(productId: ProductId.menu_full);
+
+    dynamic screen;
+    if (isMenuPurchased) {
+      // меню куплено
+      screen = MenuScreen(dishes: dishes);
+    } else {
+      // меню некуплено, перейти на превью
+      screen = MenuPreviewScreen(dishes: dishes);
+    }
+    Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
   }
 
-  void productListTapped(BuildContext context, List<Product> productList ) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProductListScreen(productList: productList)));
+  void productListTapped(
+      BuildContext context, List<product_model.Product> productList) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ProductListScreen(productList: productList)));
   }
+
+// мне эта ф-ция нужна, когда я изменяю SharedPref
+
 }

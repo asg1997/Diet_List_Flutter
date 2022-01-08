@@ -6,7 +6,7 @@ import 'package:diet_list_flutter/Models/dish_model.dart';
 class RecipeScreen extends StatefulWidget {
   const RecipeScreen({Key? key, required this.dish, required this.image}) : super(key: key);
 
-  final Image image;
+  final Image? image;
   final Dish dish;
 
   @override
@@ -27,7 +27,7 @@ class _RecipeScreenState extends State<RecipeScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
                 image: DecorationImage(
-                    image: widget.image.image,
+                    image: widget.image!.image,
                     fit: BoxFit.fitHeight,
                     alignment: Alignment.topCenter)),
           ),

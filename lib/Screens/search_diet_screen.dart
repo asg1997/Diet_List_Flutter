@@ -10,11 +10,9 @@ import 'main_screen.dart';
 class SearchDietScreen extends StatefulWidget {
   const SearchDietScreen({Key? key}) : super(key: key);
 
-
   @override
   _SearchDietScreenState createState() => _SearchDietScreenState();
 }
-
 
 class _SearchDietScreenState extends State<SearchDietScreen> {
   @override
@@ -26,31 +24,31 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
   String _mySelection = 'Аритмия';
   Future<List<String>>? dietsList;
 
-
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: Center(
             child: FutureBuilder<List<String>>(
-              future: dietsList,
-              builder: (context, snapshot) {
-                final dietsList = snapshot.data;
-                switch (snapshot.connectionState) {
-                  case ConnectionState.waiting:
-                    return CircularProgressIndicator(color: Colors.white,);
+          future: dietsList,
+          builder: (context, snapshot) {
+            final dietsList = snapshot.data;
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return CircularProgressIndicator(
+                  color: Colors.white,
+                );
 
-                  case ConnectionState.done:
-                    if (dietsList != null) {
-                      return screenWithData(dietsList);
-                    } else {
-                      return screenWithData([]);
-                    }
-                  default:
-                      return Text('Ошибка. Повторите позже');
+              case ConnectionState.done:
+                if (dietsList != null) {
+                  return screenWithData(dietsList);
+                } else {
+                  return screenWithData([]);
                 }
-              },
-            )
-        ),
+              default:
+                return Text('Ошибка. Повторите позже');
+            }
+          },
+        )),
         decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/osnovnoi.png'),
@@ -59,7 +57,6 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
       ),
     );
   }
-
 
   Widget screenWithData(List<String> dietList) {
     return Column(
@@ -76,12 +73,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
             // Для того. чтобы получить кнопку, нужно просто написать ее класс
             // Можно не менять параментры кнопки, тогда они будет без текста
             // можно вызвать параметры в скобках и изменить текст или цвет или и то, и другое
-            SizedBox(
-              width: 150,
-              child: button()
-
-              ),
-
+            SizedBox(width: 150, child: button()),
           ],
         )
       ],
@@ -125,23 +117,25 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
           Expanded(
               child: DropdownButtonHideUnderline(
                   child: ButtonTheme(
-                    alignedDropdown: true,
-                    child: DropdownButton(
-                      value: _mySelection,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          _mySelection = newValue!;
-                        });
-                      },
-                      items: dietList.map<DropdownMenuItem<String>>((
-                          String newValue) {
-                        return DropdownMenuItem<String>(
-                          value: newValue,
-                          child: Text(newValue, style: ProjectFonts.tableText,),
-                        );
-                      }).toList(),
-                    ),
-                  )))
+            alignedDropdown: true,
+            child: DropdownButton(
+              value: _mySelection,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _mySelection = newValue!;
+                });
+              },
+              items: dietList.map<DropdownMenuItem<String>>((String newValue) {
+                return DropdownMenuItem<String>(
+                  value: newValue,
+                  child: Text(
+                    newValue,
+                    style: ProjectFonts.tableText,
+                  ),
+                );
+              }).toList(),
+            ),
+          )))
         ],
       ),
     );
@@ -153,9 +147,7 @@ class _SearchDietScreenState extends State<SearchDietScreen> {
     final Future<Diet> diet = DietService.getDiet(named: diet_name);
 
     Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-          builder: (context) => MainScreen(diet)),
+      MaterialPageRoute(builder: (context) => MainScreen(diet)),
     );
   }
-
 }

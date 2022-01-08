@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:diet_list_flutter/Service/iap_service.dart';
 import 'package:diet_list_flutter/Service/review_service.dart';
 
 import 'package:diet_list_flutter/helpers/project_fonts.dart';
@@ -11,9 +12,7 @@ class OptionsBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: checkPlatform(context)
-    );
+    return Drawer(child: checkPlatform(context));
   }
 
   ListView checkPlatform(BuildContext context) {
@@ -23,62 +22,53 @@ class OptionsBar extends StatelessWidget {
         children: [
           ListTile(
             title: Text(
-                'Выбрать диету',style: ProjectFonts.text,
+              'Выбрать диету',
+              style: ProjectFonts.text,
             ),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/SearchDietScreen');
             },
           ),
           ListTile(
-            title: Text(
-                'Оставить отзыв',style: ProjectFonts.text
-            ),
+            title: Text('Оставить отзыв', style: ProjectFonts.text),
             onTap: () {
               _ratingService.showRating();
             },
           ),
           ListTile(
-            title: Text(
-                'Восстановить покупки',style: ProjectFonts.text
-            ),
-            onTap: () {
-
+            title: Text('Восстановить покупки', style: ProjectFonts.text),
+            onTap: () async {
+              await IAPService.isRestoredSuccessfuly();
+              Navigator.pop(context);
             },
           ),
           ListTile(
-            title: Text(
-                'Ссылки на источники',style: ProjectFonts.text
-            ),
+            title: Text('Ссылки на источники', style: ProjectFonts.text),
             onTap: () {
               Navigator.pushNamed(context, '/LinksScreen');
             },
           )
         ],
       );
-    } {
+    }
+    {
       // Android
       return ListView(
         children: [
           ListTile(
-            title: Text(
-                'Выбрать диету',style: ProjectFonts.text
-            ),
+            title: Text('Выбрать диету', style: ProjectFonts.text),
             onTap: () {
               Navigator.pushReplacementNamed(context, '/SearchDietScreen');
             },
           ),
           ListTile(
-            title: Text(
-                'Оставить отзыв',style: ProjectFonts.text
-            ),
+            title: Text('Оставить отзыв', style: ProjectFonts.text),
             onTap: () {
-          _ratingService.showRating();
+              _ratingService.showRating();
             },
           ),
           ListTile(
-            title: Text(
-                'Ссылки на источники',style: ProjectFonts.text
-            ),
+            title: Text('Ссылки на источники', style: ProjectFonts.text),
             onTap: () {
               Navigator.pushNamed(context, '/LinksScreen');
             },

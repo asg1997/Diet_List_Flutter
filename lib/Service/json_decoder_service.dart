@@ -3,8 +3,8 @@ import 'package:diet_list_flutter/Models/diet_model.dart';
 import 'package:http/http.dart' as http;
 
 class JsonDecoderService {
-
-  static Future<T> decodeCyrillicJSONObject<T>({required http.Response response}) async {
+  static Future<T> decodeCyrillicJSONObject<T>(
+      {required http.Response response}) async {
     // К нам пришло содержимое, но оно отобрадается некорректно,
     // потому что там есть киррилические символы.
     // Чтобы поправить ситуацию, мы конвертируем полученный ответ в байты
@@ -17,7 +17,8 @@ class JsonDecoderService {
     return data[0];
   }
 
-  static Future<List<String>> decodeDietList({required http.Response response}) async {
+  static Future<List<String>> decodeDietList(
+      {required http.Response response}) async {
     // К нам пришло содержимое, но оно отобрадается некорректно,
     // потому что там есть киррилические символы.
     // Чтобы поправить ситуацию, мы конвертируем полученный ответ в байты
@@ -32,18 +33,13 @@ class JsonDecoderService {
 
   static Diet decodeDiet({required http.Response response}) {
     try {
-
       final converted = utf8.decode(response.bodyBytes);
       final json = jsonDecode(converted.toString()) as Map<String, dynamic>;
       final diet = Diet.fromJson(json);
 
       return diet;
-
     } catch (error) {
       throw Exception(error.toString());
     }
   }
-
-
-
 }
